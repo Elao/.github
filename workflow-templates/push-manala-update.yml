@@ -1,0 +1,36 @@
+name: Manala update
+
+on:
+  push:
+    branches: [ $default-branch ]
+    paths:
+      - '.manala.yaml'
+  pull_request:
+    paths:
+      - '.manala.yaml'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout head
+        uses: actions/checkout@v2
+
+      - name: Setup & Run Manala update
+        uses: ./actions/setup-manala
+
+      - name: Run Manala update
+        shell: bash
+        run: manala update
+
+      # https://github.com/EndBug/add-and-commit
+      - name: Commit & push changes
+        uses: EndBug/add-and-commit@v4
+        with:
+          author_name: GitHub Actions Bot
+          author_email: actions@github.com
+          message: '[AUTO] Run manala update'
+          add: ".manala/"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

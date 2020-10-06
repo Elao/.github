@@ -1,0 +1,12 @@
+name: Setup Manala
+description: Setup the Manala binary
+
+runs:
+  using: composite
+  steps:
+
+    - name: Download & Install the Manala binary
+      shell: bash
+      run: |
+        curl -sfL https://raw.githubusercontent.com/manala/manala/master/godownloader.sh | sh
+        echo "./bin/" >> $GITHUB_PATH

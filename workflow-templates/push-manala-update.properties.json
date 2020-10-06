@@ -1,0 +1,12 @@
+{
+  "name": "Manala update",
+  "description": "Automatically runs manala update on .manala.yml changes in case the developper forgot it",
+  "iconName": "icon/manala",
+  "categories": [
+    "JavaScript",
+    "PHP"
+  ],
+  "filePatterns": [
+    ".manala.yml"
+  ]
+}
